@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'StateController@index');
+Route::get('/states/{name}', 'StateController@show');
