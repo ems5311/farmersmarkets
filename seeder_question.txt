@@ -1,0 +1,44 @@
+Seeding Models from a CSV file with Eloquent
+
+Hi,
+I'm new to laravel, so warning in advance that this might be a no-brainer.
+
+I'm trying to seed a couple of Models with a CSV file. The file contans a list of names and locations of stores. Let's say it looks like this:
+
+StoreName, City, State
+store1, Philadelphia, PA
+store2, Philadelphia, PA
+store3, Altoona, PA
+store4, Portland, OR
+store5, Portland, OR
+
+At the end, the result will be a City Model and a State Model. City would have columns for the name of the city, state, and total stores in that city:
+
+id, name, state, total
+1, Philadelphia, PA, 2
+2, Altoona, PA, 1
+3, Portland, OR, 2
+
+And the State Model will have columns for name, and total stores in that state:
+
+id, name, total
+1, PA, 3
+2, OR, 2
+
+I then have a hasMany relation within the State Model:
+
+class State extends Model
+{
+    public function cities()
+    {
+        return $this->hasMany(City::class, 'state', 'name');
+    }
+}
+
+This relationship defines the 'state' column from the State Model as the foreign key, and the 'name' column from City as the local key.
+
+I am wondering if this relationship could be better. Is there a way that I could build the City Model with an attribute of 'state_id', and then have that match the State Model's 'id' attribute? Would this make for a performance increase for when I call App\State::find(#)->cities?
+
+Or, is there anything else I need to do to define 'state' as the foreign key for the State Model?
+
+Thanks,
