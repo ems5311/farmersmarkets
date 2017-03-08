@@ -12,17 +12,24 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        //
-        $states = Farmer::getQuery()
+        $cities = Farmer::getQuery()
             ->whereNotNull('city')
-            ->select('city as name', DB::raw('count(*) as total'))
-            ->groupBy('name')
-            ->get();
+            ->select('city as name', 'state', DB::raw('count(*) as total'))
+            ->groupBy('name', 'state');
 
-        $amResult = array_map(function($object){
+        $citiesResults = array_map(function($object){
             return (array) $object;
-        }, $states->toArray());
+        }, $cities->get()->toArray());
 
-        DB::table('cities')->insert($amResult);
+        $states = $cities
+            ->select('state as name', DB::raw('count(*) as total'))
+            ->groupBy('state');
+
+        $statesResults = array_map(function($object){
+            return (array) $object;
+        }, $states->get()->toArray());
+
+        DB::table('cities')->insert($citiesResults);
+        DB::table('states')->insert($statesResults);
     }
 }
