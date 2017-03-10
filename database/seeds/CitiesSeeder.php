@@ -17,13 +17,15 @@ class CitiesSeeder extends Seeder
             ->select('city as name', 'state', DB::raw('count(*) as total'))
             ->groupBy('name', 'state');
 
+        $citiesClone = clone $cities;
+
+        $states = $citiesClone
+            ->select('state as name', DB::raw('count(*) as total'))
+            ->groupBy('state');
+
         $citiesResults = array_map(function($object){
             return (array) $object;
         }, $cities->get()->toArray());
-
-        $states = $cities
-            ->select('state as name', DB::raw('count(*) as total'))
-            ->groupBy('state');
 
         $statesResults = array_map(function($object){
             return (array) $object;

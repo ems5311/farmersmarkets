@@ -13,3 +13,4 @@
 
 Route::get('/', 'StateController@index');
 Route::get('/states/{name}', 'StateController@show');
+Route::get('/states/{stateName}/{cityName}', 'CityController@show');
