@@ -26,6 +26,7 @@
                             </a>
                         @endif
                     </h2>
+                    <hr/>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-4">
