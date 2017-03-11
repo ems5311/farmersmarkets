@@ -39,7 +39,36 @@
                                 </a>
                             </div>
                             <div class="col-sm-8">
-
+                                <div class="col-sm-4">
+                                    @if($market->season1Date)
+                                        <strong>Seasons</strong>
+                                        <hr/>
+                                        <ul>
+                                            <li>{{ $market->season1Date }}</li>
+                                            @if($market->season1Time)
+                                                <li>{{ $market->season1Time }}</li>
+                                            @endif
+                                            @if($market->season2Date)
+                                                <li>{{ $market->season2Date }}</li>
+                                            @endif
+                                            @if($market->season2Time)
+                                                <li>{{ $market->season2Time }}</li>
+                                            @endif
+                                            @if($market->season3Date)
+                                                <li>{{ $market->season3Date }}</li>
+                                            @endif
+                                            @if($market->season3Time)
+                                                <li>{{ $market->season3Time }}</li>
+                                            @endif
+                                            @if($market->season4Date)
+                                                <li>{{ $market->season4Date }}</li>
+                                            @endif
+                                            @if($market->season4Time)
+                                                <li>{{ $market->season4Time }}</li>
+                                            @endif
+                                        </ul>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
