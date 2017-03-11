@@ -8,6 +8,6 @@ class State extends Model
 {
     public function cities()
     {
-        return $this->hasMany(City::class, 'state', 'name');
+        return $this->hasMany(City::class);
     }
 }

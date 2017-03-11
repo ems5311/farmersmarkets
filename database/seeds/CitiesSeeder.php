@@ -17,9 +17,7 @@ class CitiesSeeder extends Seeder
             ->select('city as name', 'state', DB::raw('count(*) as total'))
             ->groupBy('name', 'state');
 
-        $citiesClone = clone $cities;
-
-        $states = $citiesClone
+        $states = Farmer::getQuery()
             ->select('state as name', DB::raw('count(*) as total'))
             ->groupBy('state');
 
@@ -30,6 +28,17 @@ class CitiesSeeder extends Seeder
         $statesResults = array_map(function($object){
             return (array) $object;
         }, $states->get()->toArray());
+
+        $justStates = array_column( $statesResults, 'name');
+        $justStates = array_flip($justStates);
+
+        $countCitiesResults = count($citiesResults);
+        for($i = 0; $i < $countCitiesResults; $i++)
+        {
+            $stateName = $citiesResults[$i]['state'];
+            $stateId = $justStates[$stateName];
+            $citiesResults[$i]['state_id'] = $stateId + 1;
+        }
 
         DB::table('cities')->insert($citiesResults);
         DB::table('states')->insert($statesResults);

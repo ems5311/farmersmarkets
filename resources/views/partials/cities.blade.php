@@ -18,10 +18,8 @@
 </div>
 
 <nav class="blog-pagination">
-
     <a class="btn btn-outline-{{ $cities->currentPage() == 1 ? 'secondary disabled' : 'primary' }}"
-       href="{{ $cities->previousPageUrl()  }}">Older</a>
+       href="{{ $cities->previousPageUrl()  }}">Previous</a>
     <a class="btn btn-outline-{{ $cities->hasMorePages() ? 'primary' : 'secondary disabled' }}"
-       href="{{ $cities->nextPageUrl() }}">Newer</a>
-
+       href="{{ $cities->nextPageUrl() }}">Next</a>
 </nav>

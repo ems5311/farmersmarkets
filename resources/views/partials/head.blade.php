@@ -12,4 +12,5 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/app.css" rel="stylesheet">
+    {{--<link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">--}}
 </head>

@@ -17,7 +17,7 @@ class CreateCitiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('state');
-//            $table->integer('state_id')->index();
+            $table->integer('state_id')->index();
             $table->integer('total');
         });
     }

@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Farmer;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
     public function show($stateName, $cityName)
     {
-        $city = City::where('name', $cityName)
-            ->where('state', $stateName)
-            ->firstOrFail();
+        $markets = Farmer::where('state', $stateName)
+            ->where('city', $cityName)
+            ->get();
 
-        return view('markets', compact('city'));
+        return view('markets', compact('stateName', 'cityName', 'markets'));
     }
 }

@@ -23,7 +23,7 @@ class FarmersMarketSeeder extends Seeder
             }, $data);
 
             Farmer::create([
-                'id' => intval($data[0]),
+                'fmid' => intval($data[0]),
                 'marketName' => $data[1],
                 'website' => $data[2],
                 'facebook' => $data[3],
@@ -35,7 +35,7 @@ class FarmersMarketSeeder extends Seeder
                 'city' => $data[8],
                 'county' => $data[9],
                 'state' => $data[10],
-                'zip' => $data[11],
+                'zip' => intval($data[11]),
 
                 'season1Date' => $data[12],
                 'season1Time' => $data[13],

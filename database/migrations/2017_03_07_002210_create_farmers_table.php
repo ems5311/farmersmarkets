@@ -14,7 +14,8 @@ class CreateFarmersTable extends Migration
     public function up()
     {
         Schema::create('farmers', function (Blueprint $table) {
-            $table->integer('id')->unsigned()->primary();
+            $table->increments('id');
+            $table->integer('fmid')->unsigned();
             $table->string('marketName')->nullable();
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();
@@ -26,7 +27,7 @@ class CreateFarmersTable extends Migration
             $table->string('city')->nullable();
             $table->string('county')->nullable();
             $table->string('state')->nullable();
-            $table->string('zip')->nullable();
+            $table->integer('zip')->unsigned()->nullable();
 
             $table->string('season1Date')->nullable();
             $table->string('season1Time')->nullable();
