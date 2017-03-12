@@ -3,14 +3,14 @@
         <div class="row">
             @foreach ($cities->chunk(17) as $cityList)
                 <div class="col-md-4">
-                    <ul class="list-group">
+                    <div class="list-group">
                         @foreach($cityList as $city)
-                            <li class="list-group-item justify-content-between">
-                                <a href="/states/{{ $city->state }}/{{ $city->name }}">{{ $city->name }}</a>
-                                <span class="badge badge-default badge-pill">{{ $city->total }}</span>
-                            </li>
+                            <a href="/states/{{ $city->state }}/{{ $city->name }}" class="list-group-item list-group-item-action justify-content-between">
+                                {{ $city->name }}
+                                <span class="badge badge-success badge-pill">{{ $city->total }}</span>
+                            </a>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
             @endforeach
         </div>

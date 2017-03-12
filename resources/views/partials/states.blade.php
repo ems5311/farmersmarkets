@@ -3,14 +3,14 @@
         <div class="row">
             @foreach($stateColumns as $states)
                 <div class="col-md-4">
-                    <ul class="list-group">
+                    <div class="list-group">
                         @foreach($states as $state)
-                            <li class="list-group-item justify-content-between">
-                                <a href="/states/{{ $state->name }}">{{ $state->name }}</a>
-                                <span class="badge badge-default badge-pill">{{ $state->total }}</span>
-                            </li>
+                            <a href="/states/{{ $state->name }}" class="list-group-item list-group-item-action justify-content-between">
+                                {{ $state->name }}
+                                <span class="badge badge-success badge-pill">{{ $state->total }}</span>
+                            </a>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
             @endforeach
         </div>
