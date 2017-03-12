@@ -1,6 +1,6 @@
 <?php
 
-use App\Farmer;
+use App\Market;
 use Illuminate\Database\Seeder;
 
 class StatesSeeder extends Seeder
@@ -12,7 +12,7 @@ class StatesSeeder extends Seeder
      */
     public function run()
     {
-        $states = Farmer::getQuery()
+        $states = Market::getQuery()
             ->select('state as name', DB::raw('count(*) as total'))
             ->groupBy('name')
             ->get();

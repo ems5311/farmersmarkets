@@ -1,6 +1,6 @@
 <?php
 
-use App\Farmer;
+use App\Market;
 use Illuminate\Database\Seeder;
 
 class FarmersMarketSeeder extends Seeder
@@ -22,7 +22,7 @@ class FarmersMarketSeeder extends Seeder
                 return ("" === $v) ? null : $v;
             }, $data);
 
-            Farmer::create([
+            Market::create([
                 'fmid' => intval($data[0]),
                 'marketName' => $data[1],
                 'website' => $data[2],

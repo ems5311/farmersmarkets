@@ -1,6 +1,6 @@
 <?php
 
-use App\Farmer;
+use App\Market;
 use Illuminate\Database\Seeder;
 
 class CitiesSeeder extends Seeder
@@ -12,12 +12,12 @@ class CitiesSeeder extends Seeder
      */
     public function run()
     {
-        $cities = Farmer::getQuery()
+        $cities = Market::getQuery()
             ->whereNotNull('city')
             ->select('city as name', 'state', DB::raw('count(*) as total'))
             ->groupBy('name', 'state');
 
-        $states = Farmer::getQuery()
+        $states = Market::getQuery()
             ->select('state as name', DB::raw('count(*) as total'))
             ->groupBy('state');
 

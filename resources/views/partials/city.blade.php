@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <h2 class="text-md-left">
-                        {{ $market->marketName }}
+                        {{ $market->marketName }} <small>{{ $market->id }}</small>
                         @if($market->website)
                             <a href="{{ $market->website }}" class="btn btn-primary pull-right" style="margin-right: 10px">
                                 <i class="fa fa-link" aria-hidden="true"></i>
@@ -39,35 +39,47 @@
                                 </a>
                             </div>
                             <div class="col-sm-8">
-                                <div class="col-sm-4">
-                                    @if($market->season1Date)
-                                        <strong>Seasons</strong>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        @if($market->season1Date)
+                                            <strong>Seasons</strong>
+                                            <hr/>
+                                            <ul>
+                                                <li>{{ $market->season1Date }}</li>
+                                                @if($market->season1Time)
+                                                    <li>{{ $market->season1Time }}</li>
+                                                @endif
+                                                @if($market->season2Date)
+                                                    <li>{{ $market->season2Date }}</li>
+                                                @endif
+                                                @if($market->season2Time)
+                                                    <li>{{ $market->season2Time }}</li>
+                                                @endif
+                                                @if($market->season3Date)
+                                                    <li>{{ $market->season3Date }}</li>
+                                                @endif
+                                                @if($market->season3Time)
+                                                    <li>{{ $market->season3Time }}</li>
+                                                @endif
+                                                @if($market->season4Date)
+                                                    <li>{{ $market->season4Date }}</li>
+                                                @endif
+                                                @if($market->season4Time)
+                                                    <li>{{ $market->season4Time }}</li>
+                                                @endif
+                                            </ul>
+                                        @endif
+                                    </div>
+                                    {{--TODO update payment methods to be seeded from the CitiesSeeder file--}}
+                                    <div class="col-sm-4">
+                                        <strong>Accepted Payment</strong>
                                         <hr/>
                                         <ul>
-                                            <li>{{ $market->season1Date }}</li>
-                                            @if($market->season1Time)
-                                                <li>{{ $market->season1Time }}</li>
-                                            @endif
-                                            @if($market->season2Date)
-                                                <li>{{ $market->season2Date }}</li>
-                                            @endif
-                                            @if($market->season2Time)
-                                                <li>{{ $market->season2Time }}</li>
-                                            @endif
-                                            @if($market->season3Date)
-                                                <li>{{ $market->season3Date }}</li>
-                                            @endif
-                                            @if($market->season3Time)
-                                                <li>{{ $market->season3Time }}</li>
-                                            @endif
-                                            @if($market->season4Date)
-                                                <li>{{ $market->season4Date }}</li>
-                                            @endif
-                                            @if($market->season4Time)
-                                                <li>{{ $market->season4Time }}</li>
-                                            @endif
+                                        @foreach ($market->paymentTypes() as $p_k => $p_v)
+                                            <li>{{ $p_k }}</li>
+                                        @endforeach
                                         </ul>
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

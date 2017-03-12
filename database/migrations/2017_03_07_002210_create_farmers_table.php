@@ -13,7 +13,7 @@ class CreateFarmersTable extends Migration
      */
     public function up()
     {
-        Schema::create('farmers', function (Blueprint $table) {
+        Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('fmid')->unsigned();
             $table->string('marketName')->nullable();
