@@ -29,14 +29,7 @@ class CreateFarmersTable extends Migration
             $table->string('state')->nullable();
             $table->integer('zip')->unsigned()->nullable();
 
-            $table->string('season1Date')->nullable();
-            $table->string('season1Time')->nullable();
-            $table->string('season2Date')->nullable();
-            $table->string('season2Time')->nullable();
-            $table->string('season3Date')->nullable();
-            $table->string('season3Time')->nullable();
-            $table->string('season4Date')->nullable();
-            $table->string('season4Time')->nullable();
+            $table->text('schedule')->nullable();
 
             $table->double('xCoordinate')->nullable();
             $table->double('yCoordinate')->nullable();
@@ -91,6 +84,6 @@ class CreateFarmersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farmers');
+        Schema::dropIfExists('markets');
     }
 }

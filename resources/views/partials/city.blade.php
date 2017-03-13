@@ -48,7 +48,7 @@
                                         </ul>
                                         <div id="my-tab-content-{{ $market->id }}" class="tab-content">
                                             <div class="tab-pane active" id="schedule-{{ $market->id }}">
-                                                <p>schedule</p>
+                                                {!! $market->schedule !!}
                                             </div>
                                             <div class="tab-pane" id="payment-{{ $market->id }}">
                                                 <p>payment</p>

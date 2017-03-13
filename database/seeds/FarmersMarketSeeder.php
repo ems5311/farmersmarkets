@@ -22,6 +22,22 @@ class FarmersMarketSeeder extends Seeder
                 return ("" === $v) ? null : $v;
             }, $data);
 
+            $schedule = "<ul>";
+            $scheduleArr = array_slice($data, 12, 8);
+            $schedExists = false;
+            foreach ($scheduleArr as $sched) {
+                if ($sched) {
+                    $schedule .= "<li>" . $sched . "</li>";
+                    $schedExists = true;
+                }
+            }
+            if ($schedExists) {
+                $schedule .= "</ul>";
+            } else {
+                $schedule = null;
+            }
+
+
             Market::create([
                 'fmid' => intval($data[0]),
                 'marketName' => $data[1],
@@ -37,14 +53,7 @@ class FarmersMarketSeeder extends Seeder
                 'state' => $data[10],
                 'zip' => intval($data[11]),
 
-                'season1Date' => $data[12],
-                'season1Time' => $data[13],
-                'season2Date' => $data[14],
-                'season2Time' => $data[15],
-                'season3Date' => $data[16],
-                'season3Time' => $data[17],
-                'season4Date' => $data[18],
-                'season4Time' => $data[19],
+                'schedule' => $schedule,
 
                 'xCoordinate' => $data[20],
                 'yCoordinate' => $data[21],
