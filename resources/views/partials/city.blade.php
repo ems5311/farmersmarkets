@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <h2 class="text-md-left">
-                        {{ $market->marketName }} <small>{{ $market->id }}</small>
+                        {{ $market->marketName }}
                         @if($market->website)
                             <a href="{{ $market->website }}" class="btn btn-primary pull-right" style="margin-right: 10px">
                                 <i class="fa fa-link" aria-hidden="true"></i>
