@@ -51,10 +51,14 @@
                                                 {!! $market->schedule !!}
                                             </div>
                                             <div class="tab-pane" id="payment-{{ $market->id }}">
-                                                <p>payment</p>
+                                                <div class="container">
+                                                    {!! $market->payments !!}
+                                                </div>
                                             </div>
                                             <div class="tab-pane" id="services-{{ $market->id }}">
-                                                <p>services</p>
+                                                <div class="container">
+                                                    {!! $market->services !!}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -22,22 +22,6 @@ class FarmersMarketSeeder extends Seeder
                 return ("" === $v) ? null : $v;
             }, $data);
 
-            $schedule = "<ul>";
-            $scheduleArr = array_slice($data, 12, 8);
-            $schedExists = false;
-            foreach ($scheduleArr as $sched) {
-                if ($sched) {
-                    $schedule .= "<li>" . $sched . "</li>";
-                    $schedExists = true;
-                }
-            }
-            if ($schedExists) {
-                $schedule .= "</ul>";
-            } else {
-                $schedule = null;
-            }
-
-
             Market::create([
                 'fmid' => intval($data[0]),
                 'marketName' => $data[1],
@@ -53,56 +37,105 @@ class FarmersMarketSeeder extends Seeder
                 'state' => $data[10],
                 'zip' => intval($data[11]),
 
-                'schedule' => $schedule,
+                'schedule' => $this->buildSchedule(array_slice($data, 12, 8)),
 
                 'xCoordinate' => $data[20],
                 'yCoordinate' => $data[21],
 
                 'location' => $data[22],
 
-                'credit' => $this->yesOrNo($data[23]),
-                'wic' => $this->yesOrNo($data[24]),
-                'wiccash' => $this->yesOrNo($data[25]),
-                'sfmnp' => $this->yesOrNo($data[26]),
-                'snap' => $this->yesOrNo($data[27]),
-                'organic' => $this->yesOrNo($data[28]),
-                'bakedgoods' => $this->yesOrNo($data[29]),
-                'cheese' => $this->yesOrNo($data[30]),
-                'crafts' => $this->yesOrNo($data[31]),
-                'flowers' => $this->yesOrNo($data[32]),
-                'eggs' => $this->yesOrNo($data[33]),
-                'seafood' => $this->yesOrNo($data[34]),
-                'herbs' => $this->yesOrNo($data[35]),
-                'vegetables' => $this->yesOrNo($data[36]),
-                'honey' => $this->yesOrNo($data[37]),
-                'jams' => $this->yesOrNo($data[38]),
-                'maple' => $this->yesOrNo($data[39]),
-                'meat' => $this->yesOrNo($data[40]),
-                'nursery' => $this->yesOrNo($data[41]),
-                'nuts' => $this->yesOrNo($data[42]),
-                'plants' => $this->yesOrNo($data[43]),
-                'poultry' => $this->yesOrNo($data[44]),
-                'prepared' => $this->yesOrNo($data[45]),
-                'soap' => $this->yesOrNo($data[46]),
-                'trees' => $this->yesOrNo($data[47]),
-                'wine' => $this->yesOrNo($data[48]),
-                'coffee' => $this->yesOrNo($data[49]),
-                'beans' => $this->yesOrNo($data[50]),
-                'fruits' => $this->yesOrNo($data[51]),
-                'grains' => $this->yesOrNo($data[52]),
-                'juices' => $this->yesOrNo($data[53]),
-                'mushrooms' => $this->yesOrNo($data[54]),
-                'petfood' => $this->yesOrNo($data[55]),
-                'tofu' => $this->yesOrNo($data[56]),
-                'wildharvested' => $this->yesOrNo($data[57]),
+                'payments' => $this->buildPayments(array_slice($data, 23, 5)),
+
+                'services' => $this->buildServicesList(array_slice($data, 28, 30)),
 
                 'updateTime' => $data[58],
             ]);
         }
     }
 
+    /**
+     * Return true for 'Y', false for 'N'
+     *
+     * @param Char $cell
+     * @return bool
+     */
     private function yesOrNo($cell)
     {
         return $cell === "Y" ? true : false;
+    }
+
+    /**
+     * Builds the html for displaying the schedule
+     *
+     * @param $scheduleData
+     * @return void
+     */
+    private function buildSchedule($scheduleData)
+    {
+        $schedule = "<ul>";
+        $schedExists = false;
+        foreach ($scheduleData as $sched) {
+            if ($sched) {
+                $schedule .= "<li>" . $sched . "</li>";
+                $schedExists = true;
+            }
+        }
+        if ($schedExists) {
+            return $schedule . "</ul>";
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @param $paymentData
+     */
+    private function buildPayments($paymentData)
+    {
+        $paymentTypes = ['credit', 'wic', 'wiccash', 'sfmnp', 'snap'];
+        $paymentTypesCount = count($paymentTypes);
+
+        $payments = "<ul class='row'>";
+        $pmntExists = false;
+        for ($i = 0; $i < $paymentTypesCount; $i++) {
+            if ($this->yesOrNo($paymentData[$i])) {
+                $pmntExists = true;
+                $payments .= "<li class='col-sm-4'>" . $paymentTypes[$i] . "</li>";
+            }
+        }
+        $payments .= "</ul>";
+
+        if ($pmntExists) {
+            return $payments;
+        } else {
+            return null;
+        }
+
+    }
+
+    private function buildServicesList($servicesData)
+    {
+        $servicesTypes = ['organic', 'bakedgoods', 'cheese', 'crafts', 'flowers', 'eggs', 'seafood',
+                            'herbs', 'vegetables', 'honey', 'jams', 'maple', 'meat', 'nursery', 'nuts',
+                            'plants', 'poultry', 'prepared', 'soap', 'trees', 'wine', 'coffee', 'beans',
+                            'fruits', 'grains', 'juices', 'mushrooms', 'pet food', 'tofu', 'wild harvested'];
+        $servicesTypesCount = count($servicesTypes);
+
+        $services = "<ul class='row'>";
+        $svcExists = false;
+        for ($i = 0; $i < $servicesTypesCount; $i++) {
+            if ($this->yesOrNo($servicesData[$i])) {
+                $svcExists = true;
+                $services .= "<li class='col-sm-4'>" . $servicesTypes[$i] . "</li>";
+            }
+        }
+        $services .= "</ul>";
+
+        if ($svcExists) {
+            return $services;
+        } else {
+            return null;
+        }
+
     }
 }

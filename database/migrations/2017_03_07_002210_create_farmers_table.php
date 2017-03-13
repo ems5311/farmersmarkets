@@ -36,41 +36,9 @@ class CreateFarmersTable extends Migration
 
             $table->string('location')->nullable();
 
-            $table->boolean('credit')->nullable();
-            $table->boolean('wic')->nullable();
-            $table->boolean('wiccash')->nullable();
-            $table->boolean('sfmnp')->nullable();
-            $table->boolean('snap')->nullable();
-            $table->boolean('organic')->nullable();
-            $table->boolean('bakedgoods')->nullable();
-            $table->boolean('cheese')->nullable();
-            $table->boolean('crafts')->nullable();
-            $table->boolean('flowers')->nullable();
-            $table->boolean('eggs')->nullable();
-            $table->boolean('seafood')->nullable();
-            $table->boolean('herbs')->nullable();
-            $table->boolean('vegetables')->nullable();
-            $table->boolean('honey')->nullable();
-            $table->boolean('jams')->nullable();
-            $table->boolean('maple')->nullable();
-            $table->boolean('meat')->nullable();
-            $table->boolean('nursery')->nullable();
-            $table->boolean('nuts')->nullable();
-            $table->boolean('plants')->nullable();
-            $table->boolean('poultry')->nullable();
-            $table->boolean('prepared')->nullable();
-            $table->boolean('soap')->nullable();
-            $table->boolean('trees')->nullable();
-            $table->boolean('wine')->nullable();
-            $table->boolean('coffee')->nullable();
-            $table->boolean('beans')->nullable();
-            $table->boolean('fruits')->nullable();
-            $table->boolean('grains')->nullable();
-            $table->boolean('juices')->nullable();
-            $table->boolean('mushrooms')->nullable();
-            $table->boolean('petfood')->nullable();
-            $table->boolean('tofu')->nullable();
-            $table->boolean('wildharvested')->nullable();
+            $table->text('payments')->nullable();
+
+            $table->text('services')->nullable();
 
             $table->string('updateTime')->nullable();
             $table->timestamps();
